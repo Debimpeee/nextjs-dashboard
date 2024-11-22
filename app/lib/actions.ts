@@ -31,7 +31,6 @@ export async function deleteInvoice(id: string) {
         revalidatePath('/dashboard/invoices');
         return { message: 'Deleted Invoice'};
     } catch (error){
-        console.error(error); // Log the error for debugging
         return { message: 'Database Error: Failed to Delete Invoice.'}
     }
   }
@@ -73,7 +72,6 @@ export async function deleteInvoice(id: string) {
         VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
       `;
     } catch (error) {
-      console.error(error); // Log the error for debugging
       // If a database error occurs, return a more specific error.
       return {
         message: 'Database Error: Failed to Create Invoice.',
@@ -114,7 +112,6 @@ export async function deleteInvoice(id: string) {
         WHERE id = ${id}
       `;
     } catch (error) {
-      console.error(error); // Log the error for debugging
       return { message: 'Database Error: Failed to Update Invoice.' };
     }
    
@@ -129,7 +126,6 @@ export async function deleteInvoice(id: string) {
     try {
       await signIn('credentials', formData);
     } catch (error) {
-      console.error(error); // Log the error for debugging
       if (error instanceof AuthError) {
         switch (error.type) {
           case 'CredentialsSignin':
